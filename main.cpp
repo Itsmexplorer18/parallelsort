@@ -2,40 +2,40 @@
 #include <vector>
 #include <mutex>
 #include <chrono> // Include chrono for timing
-#include "sorting/mergeSort.hpp"
-#include "sorting/parallelMergeSort.hpp"
+#include "sorting/QuickSort.hpp"
+#include "sorting/parallelquickSort.hpp"
 
 int main(int argc, char *argv[]) {
 
     const int SIZE = 10000000;
     std::vector<int> nums(SIZE);
     std::vector<int> nums1(SIZE);
-    for (int i = 0; i < SIZE; ++i) {
+   for (int i = 0; i < SIZE; ++i) {
         nums[i] = rand() % 10000000;
         nums1[i] = nums[i];
     }
 
     
-    MergeSort* mergesort = new MergeSort(&nums);
+    QuickSort* quicksort = new QuickSort(&nums);
     auto start = std::chrono::high_resolution_clock::now();
-    mergesort->sort();
+    quicksort->sort();
     auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> mergeSortDuration = end - start;
+    std::chrono::duration<double> QuickSortDuration = end - start;
 
-    std::cout << "MergeSort time taken: " << mergeSortDuration.count() << " seconds" << std::endl;
+    std::cout << "Quicksort time taken: " << QuickSortDuration.count() << " seconds" << std::endl;
 
-    delete mergesort;
+    delete quicksort;
 
-    // Measure time for ParallelMergeSort
-   ParallelMergeSort* mergesort1 = new ParallelMergeSort(&nums1);
+     ParallelQuickSort* quicksort1 = new  ParallelQuickSort(&nums1);
     start = std::chrono::high_resolution_clock::now();
-    mergesort1->sort();
+    quicksort1->sort();
     end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> parallelMergeSortDuration = end - start;
+    std::chrono::duration<double> parallelQuickSortDuration = end - start;
 
-    std::cout << "ParallelMergeSort time taken: " << parallelMergeSortDuration.count() << " seconds" << std::endl;
+    std::cout << "ParallelquickSort time taken: " << parallelQuickSortDuration.count() << " seconds" << std::endl;
 
-    delete mergesort1;
+    delete quicksort1;
+
 
     return 0;
 }
