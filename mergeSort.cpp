@@ -2,9 +2,7 @@
 #include <cstdlib>
 
 
-MergeSort::MergeSort(std::vector<int> *nums) {
-    this->nums = nums;
-}
+MergeSort::MergeSort(std::vector<int> &nums) :nums(nums) {} ;
 
 MergeSort::~MergeSort() {}
 
@@ -22,33 +20,33 @@ void MergeSort::recursiveSort(int left, int right) {
     int j = mid + 1;
 
     while (i <= mid && j <= right) {
-        if ((*nums)[i] <= (*nums)[j]) {
-            result.push_back((*nums)[i]);
+        if ((nums)[i] <= (nums)[j]) {
+            result.push_back((nums)[i]);
             i++;
         } else {
-            result.push_back((*nums)[j]);
+            result.push_back((nums)[j]);
             j++;
         }
     }
 
     while (i <= mid) {
-        result.push_back((*nums)[i]);
+        result.push_back((nums)[i]);
         i++;
     }
 
     while (j <= right) {
-        result.push_back((*nums)[j]);
+        result.push_back((nums)[j]);
         j++;
     }
 
     for (int k = 0; k < result.size(); k++) {
-        (*nums)[left + k] = result[k];
+        (nums)[left + k] = result[k];
     }
 }
 
 void MergeSort::sort() {
-    if ((*nums).size() == 0) {
+    if ((nums).size() == 0) {
         exit(1);
     }
-    recursiveSort(0, (*nums).size() - 1);
+    recursiveSort(0, (nums).size() - 1);
 }
