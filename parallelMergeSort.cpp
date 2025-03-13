@@ -10,7 +10,8 @@ ParallelMergeSort::~ParallelMergeSort() {}
 
 // Defining the recursive function here using the scope resolution operator
 void ParallelMergeSort::recursiveSort(int left, int right) {
-
+   //this is pointing to mergesort1 which is the pointer to out current instance of object
+   
     const int THRESHOLD = 5000;
 
     if (right - left < THRESHOLD) {
@@ -58,12 +59,21 @@ void ParallelMergeSort::recursiveSort(int left, int right) {
     }
 }
 
-// Sort function that starts the parallel recursive sort
+/*When calling sort()
+ParallelMergeSort* mergesort1 = new ParallelMergeSort(nums1);
+mergesort1->sort();
+Inside sort(), we have:
+std::thread thread_1([this] { this->recursiveSort(0, nums.size() - 1); });
+this == mergesort1
+So, this->recursiveSort(...) calls recursiveSort() on mergesort1.
+This means this->recursiveSort(...) is the same as mergesort1->recursiveSort(...).*/
 void ParallelMergeSort::sort() {
     if (nums.empty()) { // Check for an empty vector
         return;
     }
-
+    /*new ParallelMergeSort(nums1) creates an instance of ParallelMergeSort on the heap.
+    mergesort1 is a pointer to this instance
+    this is pointing to mergesort1*/
     std::thread thread_1([this] { this->recursiveSort(0, nums.size() - 1); });
     thread_1.join();
 }
