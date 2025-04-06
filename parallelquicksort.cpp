@@ -6,6 +6,8 @@ ParallelQuickSort::ParallelQuickSort(std::vector<int> *nums) {
     this->nums = nums;
 }
 
+
+
 ParallelQuickSort::~ParallelQuickSort() {}
 
 int find_partition1(std::vector<int> *nums,int low,int high){
