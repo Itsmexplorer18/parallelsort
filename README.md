@@ -77,3 +77,6 @@ The way user threads are mapped to kernel threads determines if the program achi
 ## Results
 The program outputs the execution time for each sorting approach, helping to evaluate the efficiency of parallel sorting.
 
+
+
+##more to do-->
